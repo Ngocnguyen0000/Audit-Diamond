@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | **Sản phẩm** | Diamond Painting — game tô màu pixel/kim cương theo số |
-| **Phiên bản tài liệu** | 0.1 |
+| **Phiên bản tài liệu** | 0.2 — bổ sung mode Block Blast (mục 6/F13) |
 | **Ngày** | 2026-07-17 |
 | **Trạng thái** | 🟡 Draft — chờ chốt các mục `[CẦN XÁC NHẬN]` |
 | **Nguồn thiết kế** | [Figma — Audit Diamond](https://www.figma.com/design/lfGHbsUaDacwp80v1epi0g/Audit-Diamond) |
@@ -20,6 +20,7 @@ Diamond Painting là game mobile casual thể loại **color-by-number / diamond
 2. Hệ thống Artwork gallery lưu và chia sẻ thành phẩm (Download/Share).
 3. Effect trang trí thành phẩm (mua bằng diamond).
 4. Vòng lặp retention: Daily check-in, Streak challenge 7 ngày, vòng quay may mắn.
+5. **Mode Block Blast (v0.2)**: mini-game xếp khối kim cương vuông trên lưới 8×8 — vòng chơi thứ hai tăng session length và tạo thêm chỗ tiêu coin (xem F13).
 
 ## 2. Vấn đề & Cơ hội
 
@@ -64,6 +65,7 @@ Diamond Painting là game mobile casual thể loại **color-by-number / diamond
 | Xác nhận **Exit Drawing** | Tránh mất tiến độ |
 | Loading / Error states (upload, mất mạng) | Bước xử lý ảnh chắc chắn có độ trễ |
 | Remove Ads / Premium | `[CẦN XÁC NHẬN: có bán gói remove-ads không?]` Không có gói bán remove ads nhưng có reward để người dùng xem ads |
+| **Mode Block Blast** (toàn bộ UI) | Mode mới v0.2, chưa có màn nào trong Figma — cần vẽ: entry card ở Home, màn chơi, pause, Game Over/Revive, Result (xem F13.7) |
 
 ## 5. Luồng người dùng chính
 
@@ -97,6 +99,15 @@ Mua: [CHƯA THIẾT KẾ — Shop/IAP]
 ```
 > ⚠️ **Câu hỏi mở quan trọng nhất:** màn "Kiếm coins" thưởng **coins** nhưng toàn bộ UI còn lại chỉ dùng **diamonds**. Cần chốt: 1 hay 2 loại tiền tệ, tỷ giá quy đổi, và ví Diamonds hiển thị ở đâu. Quyết định này ảnh hưởng header của mọi màn hình. Sử dụng coin để mua thêm các bút cho chức năng trong màn chơi như chức năng fill, tìm kiếm ô để chơi
 
+### 5.5 Mode Block Blast (v0.2)
+```
+Home (card "Block Blast") → Màn chơi Block Blast
+  → đặt khối kim cương vuông từ khay 3 khối lên lưới 8×8
+  → đầy hàng ngang/dọc → nổ kim cương, cộng điểm, combo
+  → hết chỗ đặt → popup Revive (xem ad / 20 💎, tối đa 1 lần/ván)
+  → Game Over → màn Result (điểm, best score, thưởng coin/diamond) → Play Again / Home
+```
+
 ## 6. Yêu cầu chức năng
 
 Định dạng: user story + tiêu chí nghiệm thu (AC).
@@ -115,7 +126,8 @@ Mua: [CHƯA THIẾT KẾ — Shop/IAP]
 - AC1: Card "Diamond Painting" (Start now) → Category; card "Artwork" (View Gallery) → Artwork gallery.
 - AC2: Header hiển thị số diamond hiện có; nút "+" mở luồng nạp `[CHƯA THIẾT KẾ]`.
 - AC3: Nút Settings mở màn Settings `[CHƯA THIẾT KẾ]`.
-- AC4: Tab Daily - Checkin nhận coin hàng ngày / Shop - Mua diamond mới hoặc một số effect mới/ Streak điều hướng đúng đích - hiện tại chưa biết điều hướng như thế nào hãy gợi ý và làm cho tôi.
+- AC4: Tab Daily - Checkin nhận coin hàng ngày / Shop - Mua diamond mới hoặc một số effect mới / Streak điều hướng đúng đích. **Đề xuất điều hướng:** giữ 3 chip ở Home như shortcut (không phải tab bar toàn cục): `Daily` → mở màn Daily Check-in (phần trên của màn Challenge hiện có, tách thành màn riêng); `Shop` → màn Shop (2 tab con: Diamonds, Effects); `Streak` → màn Challenge/Streak hiện có (phần 7-Day Challenge + Today's Goal). Bỏ 3 chip này khỏi màn Category để tránh hiểu nhầm là navigation toàn cục — Category chỉ giữ filter nội dung.
+- AC5 (v0.2): Home có card thứ 3 **"Block Blast"** (cùng cỡ card Diamond Painting/Artwork, CTA "Play now") → mở màn chơi Block Blast (F13).
 
 ### F3 — Category & Collection
 - AC1: Filter chip All / Cartoon / Anime / Flower lọc đúng danh sách.
@@ -182,11 +194,77 @@ Mua: [CHƯA THIẾT KẾ — Shop/IAP]
 - AC3: Ad không load được → UI không vỡ layout, nút rewarded hiển thị trạng thái không khả dụng.
 - AC4: Tuân thủ chính sách ad network + store (không đặt nút sát vùng ad gây misclick).
 
+### F13 — Mode Block Blast (v0.2)
+> Là người chơi, tôi muốn một mini-game nhanh, dễ hiểu để đổi gió giữa các bức tranh mà vẫn giữ cảm giác "kim cương" của app.
+
+#### F13.1 Concept & mục tiêu
+- Puzzle xếp khối kiểu Block Blast trên lưới **8×8**; mọi ô của khối là **viên kim cương vuông** (square gem) render theo art style của app — cùng bộ màu đá với màn tô tranh (dùng token `Primitives` đã chuẩn hóa).
+- Mục tiêu sản phẩm: tăng session length, tạo thêm inventory quảng cáo (revive/booster), và là **chỗ tiêu coin** — cân bằng với nguồn coin từ Daily check-in (mục 5.4: diamond = tiền chính cho effect/unlock, coin = tiền tool).
+- Phiên chơi mục tiêu 2–5 phút, không có timer — giữ tinh thần thư giãn, thua do hết chỗ chứ không do áp lực thời gian.
+
+#### F13.2 Luật chơi (core rules)
+- AC1: Lưới 8×8 trống khi bắt đầu ván mới. Khay (tray) hiển thị **3 khối** ngẫu nhiên; kéo-thả khối lên lưới; khối **không xoay được** (chuẩn thể loại — đơn giản cho casual).
+- AC2: Bộ khối gồm 1–9 viên kim cương vuông: 1×1, 1×2…1×5 (ngang/dọc), 2×2, 3×3, chữ L/J (2×3), chữ T. Trọng số xuất hiện điều chỉnh được từ remote config để tinh chỉnh độ khó.
+- AC3: Chỉ đặt được vào vị trí đủ ô trống; khi kéo, hiện **ghost preview** vị trí sẽ đặt + highlight hàng/cột sắp nổ; vị trí không hợp lệ → khối mờ đi và bật về khay.
+- AC4: Đặt đủ 3 khối → khay sinh 3 khối mới. Lấp đầy **hàng ngang hoặc cột dọc** → hàng/cột nổ với hiệu ứng kim cương vỡ lấp lánh + rung nhẹ (haptic) — tận dụng cảm giác ASMR như khi đính đá.
+- AC5: **Điểm**: +1 điểm/viên khi đặt khối; nổ 1 hàng = +10; nổ nhiều hàng cùng lúc nhân theo số hàng (2 hàng = ×2…). **Combo streak**: nổ ở các lượt đặt liên tiếp → nhân điểm lũy tiến (×2, ×3… tối đa ×8), hiện label "Combo ×N!". Đứt combo khi 1 lượt đặt không nổ hàng nào.
+- AC6: **Game over** khi cả 3 khối trong khay đều không còn chỗ đặt hợp lệ → mờ lưới, hiện popup Revive (F13.4).
+- AC7: Ván dở lưu tự động (lưới + khay + điểm + combo); thoát ra Home rồi quay lại tiếp tục đúng trạng thái — nhất quán với F5-AC5.
+
+#### F13.3 Booster (tiêu coin — trả lời câu hỏi mở #1)
+| Booster | Giá gợi ý | Hành vi |
+|---|---|---|
+| 🔨 Hammer | 100 coin | Đập 1 viên bất kỳ trên lưới |
+| 🔄 Swap | 150 coin | Đổi 1 khối trong khay lấy khối ngẫu nhiên khác |
+| 💥 Clear Row | 300 coin | Nổ 1 hàng/cột tự chọn |
+
+- AC1: Booster đặt ở thanh dưới khay, hiển thị số lượng sở hữu; hết → bấm vào hiện giá coin, mua nhanh không rời màn chơi.
+- AC2: Không đủ coin → popup gợi ý: xem rewarded ad nhận coin hoặc đi Daily check-in (không dẫn sang IAP vì coin không bán bằng tiền thật).
+- AC3: Giá booster điều khiển bằng remote config.
+
+#### F13.4 Revive & quảng cáo
+- AC1: Game over lần đầu trong ván → popup **Revive**: "Continue?" với 2 lựa chọn: xem rewarded ad **hoặc** 20 💎; hiệu ứng revive = dọn 3 hàng ngẫu nhiên + khay mới. Tối đa **1 revive/ván**; từ chối → sang màn Result.
+- AC2: Banner ad đáy màn chơi (vị trí như F5-AC6, không che khay/booster).
+- AC3: Interstitial (nếu bật theo F12-AC2): chỉ sau màn Result, không bao giờ chen giữa ván.
+
+#### F13.5 Thưởng & tích hợp kinh tế
+- AC1: Màn **Result**: điểm ván, best score (kèm hiệu ứng "New Record!" nếu phá kỷ lục), thưởng quy đổi: mỗi 500 điểm = 50 coin; đạt mốc 1.000/2.500/5.000 điểm lần đầu trong ngày = +5/10/20 💎.
+- AC2: Best score lưu local (không cần đăng nhập — nhất quán mục 7 "không có cloud sync").
+- AC3: Tích hợp **Today's Goal** (F11-AC3): thêm nhiệm vụ dạng "Chơi 1 ván Block Blast", "Đạt 1.000 điểm Block Blast".
+- AC4: Số dư coin/diamond trên header đồng bộ realtime như F10-AC4.
+
+#### F13.6 Màn hình & UI cần vẽ (chưa có trong Figma)
+1. **Card "Block Blast" ở Home** — cùng hệ card hiện có, art khối kim cương vuông.
+2. **Màn chơi**: header (back, coin, diamond) + lưới 8×8 + khay 3 khối + thanh booster + điểm/combo + banner ad. Nền dùng gradient `color/bg/deep → color/bg/default` như màn tô tranh.
+3. **Menu pause** (☰): Music/Sound/Exit/Help — tái dùng component menu của F5-AC4.
+4. **Popup Revive** — theo hệ popup khiên vàng game-style đã thống nhất trong Audit.
+5. **Màn Result** — bố cục kế thừa "Màn kết quả" hiện có (điểm thay cho tranh, CTA Play Again + Home).
+6. Popup xác nhận Exit khi đang giữa ván (tái dùng popup confirm Exit Drawing sắp vẽ).
+
+#### F13.7 Edge cases
+- Khay sinh khối phải qua kiểm tra "có ít nhất 1 khối đặt được" ở **lượt sinh đầu ván** (tránh game over ngay khi mở); các lượt sau sinh thuần ngẫu nhiên theo trọng số.
+- Kill app giữa animation nổ hàng → khi mở lại, trạng thái đã là sau-khi-nổ (commit điểm trước khi chạy animation).
+- Rewarded ad revive không load được → nút ad disable, vẫn cho revive bằng 20 💎.
+- Thiết bị màn nhỏ/không notch: lưới ưu tiên chiều rộng, khay không bị banner ad đè (safe area).
+
+#### F13.8 Metrics riêng của mode
+| Metric | Mục tiêu gợi ý |
+|---|---|
+| Mode adoption — % DAU chơi ≥ 1 ván | ≥ 25% |
+| Số ván/người/ngày | ≥ 3 |
+| Revive rate (% game over có revive) | 15–25% |
+| Coin sink — % coin kiếm được tiêu vào booster | ≥ 40% |
+
+#### F13.9 Câu hỏi mở của mode
+1. Tên hiển thị chính thức: "Block Blast" hay tên riêng theo brand (vd "Diamond Blast") để tránh trùng thương hiệu game Block Blast hiện có trên store? **[Khuyến nghị: Diamond Blast]**
+2. Có leaderboard (Game Center/Play Games) không, hay chỉ best score local?
+3. Block Blast có được tính vào Streak challenge không, hay streak chỉ tính tranh hoàn thành?
+
 ## 7. Yêu cầu phi chức năng
 
 | Hạng mục | Yêu cầu |
 |---|---|
-| Hiệu năng | Render lưới tới 99×99 (≈10.000 ô) mượt 60fps khi pan/zoom; mở app → Home ≤ 4s |
+| Hiệu năng | Render lưới tới 99×99 (≈10.000 ô) mượt 60fps khi pan/zoom; mở app → Home ≤ 4s; Block Blast: kéo-thả khối phản hồi ≤ 16ms (ghost preview không giật), animation nổ hàng không chặn input |
 | Lưu trữ | Tiến độ chơi lưu local, không mất khi kill app; `[CẦN XÁC NHẬN: có sync cloud/đăng nhập không?]` không có |
 | Offline | Chơi tranh đã tải được khi offline; ads/upload yêu cầu mạng; xử lý ảnh upload `[CẦN XÁC NHẬN: on-device hay server?]` on-device |
 | Bảo mật & riêng tư | Ảnh người dùng upload: nêu rõ trong privacy policy nơi xử lý/lưu; xóa theo yêu cầu |
@@ -235,6 +313,7 @@ Mua: [CHƯA THIẾT KẾ — Shop/IAP]
 6. Entry point của Effect
 7. Xử lý ảnh upload: on-device hay server (ảnh hưởng privacy + offline)
 8. Thị trường & ngôn ngữ mục tiêu
+9. Block Blast: tên chính thức, leaderboard, quan hệ với Streak (xem F13.9)
 
 ## 11. Roadmap đề xuất
 
@@ -243,6 +322,7 @@ Mua: [CHƯA THIẾT KẾ — Shop/IAP]
 | **P0 — Chốt thiết kế** | Trả lời 8 câu hỏi mở; vẽ các màn `[CHƯA THIẾT KẾ]`; chuẩn hóa design system (xem [Audit](../audit/ui-audit-report.md)) | đang làm |
 | **P1 — MVP** | F1–F8 + banner/rewarded ads + lưu local | core loop khép kín |
 | **P2 — Kinh tế đầy đủ** | Shop/IAP, Effect, vòng quay, Challenge/Streak | cần P0 câu 1,3 |
+| **P2.5 — Mode Block Blast** | F13: UI (6 màn/popup, F13.6) → gameplay → booster/revive → tích hợp Today's Goal | sau P2 vì cần coin sink/source cân bằng; A/B đo tác động lên session length |
 | **P3 — Tăng trưởng** | Push notification, localize, sync cloud, collection theo mùa | sau khi có số liệu P1 |
 
 ---
