@@ -140,7 +140,7 @@ Mua: [CHƯA THIẾT KẾ — Shop/IAP]
 - AC7: Hoàn thành 100% → popup "Finish your artwork?" (Keep Creating / View Result).
 
 ### F6 — Màn kết quả
-- AC1: Hiển thị tranh hoàn thành (có animation replay `[CẦN XÁC NHẬN]`).
+- AC1: Hiển thị tranh hoàn thành (có animation replay ).
 - AC2: Download lưu ảnh vào máy (xin quyền Photos nếu cần); Share mở share sheet hệ điều hành.
 - AC3: Đề xuất hành động tiếp theo (Next artwork) `[CHƯA THIẾT KẾ — khuyến nghị bổ sung để giữ retention]`.
 
@@ -154,7 +154,7 @@ Mua: [CHƯA THIẾT KẾ — Shop/IAP]
 
 - AC1: Chọn nguồn Camera / Photo (xin quyền tương ứng, xử lý khi bị từ chối `[CHƯA THIẾT KẾ]`).
 - AC2: Crop vùng ảnh vuông; Cancel/Save.
-- AC3: Chọn Level (1–4) + slider số màu; preview kết quả pixel hóa `[CẦN XÁC NHẬN: có preview realtime không]`.
+- AC3: Chọn Level (1–4) + slider số màu; preview kết quả pixel hóa `[CẦN XÁC NHẬN: có preview realtime không]` không.
 - AC4: Có loading state khi xử lý ảnh; lỗi xử lý → thông báo và cho thử lại `[CHƯA THIẾT KẾ]`.
 - AC5: Tranh tạo xong xuất hiện ở đâu (Category tab riêng? Artwork?) `[CẦN XÁC NHẬN]`.
 
@@ -162,7 +162,7 @@ Mua: [CHƯA THIẾT KẾ — Shop/IAP]
 - AC1: Danh sách effect (Effect 1–4) áp lên thành phẩm; preview trước khi mua.
 - AC2: Mua effect: popup "Use Effect? — 10 💎" (Cancel / Use now); trừ diamond đúng.
 - AC3: Không đủ diamond → popup dẫn tới Shop/rewarded ad `[CHƯA THIẾT KẾ]`.
-- AC4: Entry point của Effect trong luồng chính `[CẦN XÁC NHẬN: từ màn kết quả hay artwork detail?]`.
+- AC4: Entry point của Effect trong luồng chính `[CẦN XÁC NHẬN: từ màn kết quả hay artwork detail?]artwork detail`.
 
 ### F10 — Kinh tế & Shop
 - AC1: Nguồn kiếm: rewarded video, vòng quay may mắn, hoàn thành tranh, check-in hằng ngày, chia sẻ bạn bè (mỗi mục +100 `[CẦN XÁC NHẬN đơn vị coins/diamonds]` Diamonds).
@@ -174,7 +174,7 @@ Mua: [CHƯA THIẾT KẾ — Shop/IAP]
 - AC1: Daily check-in 7 ngày, ngày hiện tại highlight, Claim nhận thưởng.
 - AC2: Streak challenge 7 ngày với các mốc thưởng lớn dần.
 - AC3: Today's Goal: danh sách nhiệm vụ (spin ×3, vẽ 1 tranh…) + nút Go/Finished.
-- AC4: Miss 1 ngày → hành vi streak `[CẦN XÁC NHẬN: reset hay cho phép hồi bằng ad/diamond]`.
+- AC4: Miss 1 ngày → hành vi streak `[CẦN XÁC NHẬN: reset hay cho phép hồi bằng ad/diamond]` cho phép hồi bằng ad/diamond.
 
 ### F12 — Quảng cáo (Monetization)
 - AC1: Banner: đáy màn chơi. Native: onboarding, artwork detail, màn kết quả. Rewarded: kiếm diamond, hồi tool.
@@ -187,15 +187,15 @@ Mua: [CHƯA THIẾT KẾ — Shop/IAP]
 | Hạng mục | Yêu cầu |
 |---|---|
 | Hiệu năng | Render lưới tới 99×99 (≈10.000 ô) mượt 60fps khi pan/zoom; mở app → Home ≤ 4s |
-| Lưu trữ | Tiến độ chơi lưu local, không mất khi kill app; `[CẦN XÁC NHẬN: có sync cloud/đăng nhập không?]` |
-| Offline | Chơi tranh đã tải được khi offline; ads/upload yêu cầu mạng; xử lý ảnh upload `[CẦN XÁC NHẬN: on-device hay server?]` |
+| Lưu trữ | Tiến độ chơi lưu local, không mất khi kill app; `[CẦN XÁC NHẬN: có sync cloud/đăng nhập không?]` không có |
+| Offline | Chơi tranh đã tải được khi offline; ads/upload yêu cầu mạng; xử lý ảnh upload `[CẦN XÁC NHẬN: on-device hay server?]` on-device |
 | Bảo mật & riêng tư | Ảnh người dùng upload: nêu rõ trong privacy policy nơi xử lý/lưu; xóa theo yêu cầu |
 | Ngôn ngữ | UI hiện tại tiếng Anh; `[CẦN XÁC NHẬN: có localize tiếng Việt và thị trường khác không]` |
 
 ## 8. Yêu cầu đặc thù mobile
 
 ### 8.1 Nền tảng
-`[CẦN XÁC NHẬN: iOS, Android hay cả hai; native (Swift/Kotlin) hay cross-platform (Flutter/Unity)]`. UI thiết kế theo khung iPhone (375×812, notch) — nếu có Android cần thêm spec cho màn hình không notch, nút back hệ thống, và tỉ lệ màn khác.
+`[ iOS, Android hay cả hai; native (Swift/Kotlin)]`. UI thiết kế theo khung iPhone (375×812, notch) — nếu có Android cần thêm spec cho màn hình không notch, nút back hệ thống, và tỉ lệ màn khác.
 
 ### 8.2 App Store / Play Store compliance
 - App có ads + nhân vật hoạt hình dễ hút trẻ em → cần khai báo đúng **age rating**; nếu nhắm "families/kids" thì ad network phải đạt chuẩn trẻ em (COPPA/GDPR-K) — native ad trong onboarding sẽ bị soi kỹ.
@@ -208,15 +208,13 @@ Mua: [CHƯA THIẾT KẾ — Shop/IAP]
 | Camera | Lần đầu chọn "Camera" trong Select Image | F8 |
 | Photo library (read) | Lần đầu chọn "Photo" | F8 |
 | Photo library (add) | Lần đầu bấm Download kết quả | F6 |
-| Notifications | Sau khi hoàn thành tranh đầu tiên (đề xuất) | F11 — nhắc streak/daily `[CẦN XÁC NHẬN]` |
+| Notifications | Sau khi hoàn thành tranh đầu tiên (đề xuất) | F11 — nhắc streak/daily |
 | ATT (iOS) | Sau onboarding, trước ad đầu tiên | F12 |
 
 ### 8.4 Push notification
-`[CẦN XÁC NHẬN chiến lược]` — đề xuất: nhắc daily check-in, sắp mất streak, collection mới.
+` đề xuất: nhắc daily check-in, sắp mất streak, collection mới.
 
 ## 9. Success metrics
-
-`[CẦN XÁC NHẬN mục tiêu số cụ thể]` — đề xuất bộ đo:
 
 | Metric | Định nghĩa | Mục tiêu gợi ý |
 |---|---|---|
