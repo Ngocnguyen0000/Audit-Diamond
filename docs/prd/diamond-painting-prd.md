@@ -305,14 +305,14 @@ Home (card "Block Blast") → Màn chơi Block Blast
 
 ## 10. Câu hỏi mở (chặn chốt PRD)
 
-1. **Coins vs Diamonds** — 1 hay 2 loại tiền? (mục 5.4)
-2. Nền tảng phát hành & công nghệ (mục 8.1)
-3. Có IAP không, gói nào (diamond pack, remove ads)? → quyết định scope màn Shop
+1. **Coins vs Diamonds** — 1 hay 2 loại tiền? Diamonds (mục 5.4)
+2. Nền tảng phát hành & công nghệ (mục 8.1) google play
+3. Có IAP không, gói nào (diamond pack, remove ads)? → quyết định scope màn Shop: Hiện tại không có
 4. Đích đến của 3 tab Daily/Shop/Streak; có chuyển sang bottom tab bar không?
-5. Sau khi upload/Save, luồng đi tiếp thế nào?
+5. Sau khi upload/Save, luồng đi tiếp thế nào? Cho người dùng crop ảnh chọn số pixel rồi vào màn chới
 6. Entry point của Effect
 7. Xử lý ảnh upload: on-device hay server (ảnh hưởng privacy + offline)
-8. Thị trường & ngôn ngữ mục tiêu
+8. Thị trường & ngôn ngữ mục tiêu: Golbal
 9. Block Blast: tên chính thức, leaderboard, quan hệ với Streak (xem F13.9)
 
 ## 11. Roadmap đề xuất
