@@ -23,12 +23,12 @@ Diamond Painting là game mobile casual thể loại **color-by-number / diamond
 
 ## 2. Vấn đề & Cơ hội
 
-- **Pain point:** người dùng casual cần hoạt động thư giãn ngắn, không áp lực, có cảm giác hoàn thành (completion satisfaction). `[CẦN XÁC NHẬN: có dữ liệu nghiên cứu người dùng không?]`
-- **Cơ hội thị trường:** thể loại color-by-number (Happy Color, Pixel Art by Easybrain, Diamond Painting ASMR) có DAU lớn, monetize chủ yếu bằng rewarded ads + remove-ads IAP. `[CẦN XÁC NHẬN: thị trường mục tiêu — global hay VN?]`
+- **Pain point:** người dùng casual cần hoạt động thư giãn ngắn, không áp lực, có cảm giác hoàn thành (completion satisfaction). `[CẦN XÁC NHẬN: có dữ liệu nghiên cứu người dùng không?]` Hiện tại tỷ lệ người dùng vào đến store tải app thì nhiều nhưng số người sẽ tải xuống thì thấp
+- **Cơ hội thị trường:** thể loại color-by-number (Happy Color, Pixel Art by Easybrain, Diamond Painting ASMR) có DAU lớn, monetize chủ yếu bằng rewarded ads + remove-ads IAP. `[CẦN XÁC NHẬN: thị trường mục tiêu — global hay VN?]` tập trung thị trường global
 
 ## 3. Đối tượng người dùng
 
-`[CẦN XÁC NHẬN — đề xuất dựa trên art direction hiện tại]`
+`[CẦN XÁC NHẬN — đề xuất dựa trên art direction hiện tại - Đối tương người dùng sẽ là thanh niên từ 12 đến trưởng thành]`
 
 | Persona | Mô tả | Nhu cầu chính |
 |---|---|---|
@@ -63,7 +63,7 @@ Diamond Painting là game mobile casual thể loại **color-by-number / diamond
 | Màn **vòng quay may mắn** | Mới có popup Congrats kết quả |
 | Xác nhận **Exit Drawing** | Tránh mất tiến độ |
 | Loading / Error states (upload, mất mạng) | Bước xử lý ảnh chắc chắn có độ trễ |
-| Remove Ads / Premium | `[CẦN XÁC NHẬN: có bán gói remove-ads không?]` |
+| Remove Ads / Premium | `[CẦN XÁC NHẬN: có bán gói remove-ads không?]` Không có gói bán remove ads nhưng có reward để người dùng xem ads |
 
 ## 5. Luồng người dùng chính
 
@@ -92,10 +92,10 @@ Category (ô "+") → popup Select Image (Camera/Photo)
 ### 5.4 Kinh tế trong game
 ```
 Kiếm: xem rewarded ad / vòng quay / hoàn thành tranh / check-in / share
-Tiêu: Effect (10 💎) / unlock tranh premium / [CẦN XÁC NHẬN các khoản tiêu khác]
+Tiêu: Effect (10 💎) / unlock tranh premium 
 Mua: [CHƯA THIẾT KẾ — Shop/IAP]
 ```
-> ⚠️ **Câu hỏi mở quan trọng nhất:** màn "Kiếm coins" thưởng **coins** nhưng toàn bộ UI còn lại chỉ dùng **diamonds**. Cần chốt: 1 hay 2 loại tiền tệ, tỷ giá quy đổi, và ví coins hiển thị ở đâu. Quyết định này ảnh hưởng header của mọi màn hình.
+> ⚠️ **Câu hỏi mở quan trọng nhất:** màn "Kiếm coins" thưởng **coins** nhưng toàn bộ UI còn lại chỉ dùng **diamonds**. Cần chốt: 1 hay 2 loại tiền tệ, tỷ giá quy đổi, và ví Diamonds hiển thị ở đâu. Quyết định này ảnh hưởng header của mọi màn hình. Sử dụng coin để mua thêm các bút cho chức năng trong màn chơi như chức năng fill, tìm kiếm ô để chơi
 
 ## 6. Yêu cầu chức năng
 
@@ -106,7 +106,7 @@ Mua: [CHƯA THIẾT KẾ — Shop/IAP]
 
 - AC1: Splash hiển thị ≤ 3s khi có mạng; có progress bar; hiện disclaimer "This action may contain ads".
 - AC2: Onboarding 3 trang, có thể Next từng trang; trang cuối nút "Get Started" vào Home.
-- AC3: Onboarding chỉ hiện lần đầu mở app. `[CẦN XÁC NHẬN: có nút Skip không — UI hiện chưa có]`
+- AC3: Onboarding chỉ hiện lần đầu mở app. `[CẦN XÁC NHẬN: có nút Skip không — UI hiện chưa có]` Không có nút skip
 - AC4: Native ad ở onboarding không che nút điều hướng và tuân thủ chính sách store (xem mục 8.2).
 
 ### F2 — Home
@@ -115,11 +115,11 @@ Mua: [CHƯA THIẾT KẾ — Shop/IAP]
 - AC1: Card "Diamond Painting" (Start now) → Category; card "Artwork" (View Gallery) → Artwork gallery.
 - AC2: Header hiển thị số diamond hiện có; nút "+" mở luồng nạp `[CHƯA THIẾT KẾ]`.
 - AC3: Nút Settings mở màn Settings `[CHƯA THIẾT KẾ]`.
-- AC4: Tab Daily / Shop / Streak điều hướng đúng đích `[CẦN XÁC NHẬN: đích của từng tab]`.
+- AC4: Tab Daily - Checkin nhận coin hàng ngày / Shop - Mua diamond mới hoặc một số effect mới/ Streak điều hướng đúng đích - hiện tại chưa biết điều hướng như thế nào hãy gợi ý và làm cho tôi.
 
 ### F3 — Category & Collection
 - AC1: Filter chip All / Cartoon / Anime / Flower lọc đúng danh sách.
-- AC2: Tranh khóa (premium) hiển thị khóa và giá mở khóa `[CẦN XÁC NHẬN: giá]`.
+- AC2: Tranh khóa (premium) hiển thị khóa và giá mở khóa `[CẦN XÁC NHẬN: giá]`Coi 1 ads là mở được tranh bị khóa.
 - AC3: Ô "+" đầu grid mở luồng Upload (F8).
 - AC4: Collection hiển thị theo chủ đề (Sparkle Like a Star, Princess World, Cartoon Besties…); badge "New" cho tranh mới.
 - AC5: Empty state khi collection trống `[CHƯA THIẾT KẾ]`.
@@ -133,7 +133,7 @@ Mua: [CHƯA THIẾT KẾ — Shop/IAP]
 
 - AC1: Bảng màu đánh số (1–n), chọn màu → các ô tương ứng được highlight; đếm số ô còn lại trên từng màu.
 - AC2: Bộ đếm tiến độ (vd 60/99) + progress bar có các mốc quà; đạt mốc → nhận thưởng.
-- AC3: Công cụ hỗ trợ: tìm ô, gợi ý/auto-fill, zoom, xem ảnh gốc, magic wand `[CẦN XÁC NHẬN: hành vi + giá từng tool — một số tool có badge số lượt]`.
+- AC3: Công cụ hỗ trợ: tìm ô, gợi ý/auto-fill, zoom, xem ảnh gốc, magic wand `[CẦN XÁC NHẬN: hành vi + giá từng tool — một số tool có badge số lượt]` Đúng.
 - AC4: Menu ☰: bật/tắt Music, Sound; Exit Drawing (có xác nhận nếu chưa lưu `[CHƯA THIẾT KẾ popup]`); Help `[CHƯA THIẾT KẾ]`.
 - AC5: Tiến độ tự lưu khi thoát; mở lại tiếp tục đúng trạng thái.
 - AC6: Banner ad đáy màn không che bảng màu/công cụ.
@@ -165,7 +165,7 @@ Mua: [CHƯA THIẾT KẾ — Shop/IAP]
 - AC4: Entry point của Effect trong luồng chính `[CẦN XÁC NHẬN: từ màn kết quả hay artwork detail?]`.
 
 ### F10 — Kinh tế & Shop
-- AC1: Nguồn kiếm: rewarded video, vòng quay may mắn, hoàn thành tranh, check-in hằng ngày, chia sẻ bạn bè (mỗi mục +100 `[CẦN XÁC NHẬN đơn vị coins/diamonds]`).
+- AC1: Nguồn kiếm: rewarded video, vòng quay may mắn, hoàn thành tranh, check-in hằng ngày, chia sẻ bạn bè (mỗi mục +100 `[CẦN XÁC NHẬN đơn vị coins/diamonds]` Diamonds).
 - AC2: Vòng quay: màn quay + popup Congrats (Claim) `[màn quay CHƯA THIẾT KẾ]`.
 - AC3: Shop mua diamond bằng tiền thật `[CHƯA THIẾT KẾ toàn bộ]`.
 - AC4: Số dư đồng bộ realtime trên header mọi màn.
